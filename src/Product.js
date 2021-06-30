@@ -1,0 +1,49 @@
+import React from 'react'
+import "./Product.css"
+import { useStateValue } from './StateProvider'
+
+function Product({ title, image, product, rating, price }) {
+    const [{basket}, dispatch] = useStateValue();
+
+    const addToBasket = () => {
+        // dispatch the item into to the data layer (context API)
+        dispatch ({
+            type: "ADD_TO_BASKET",
+            item: {
+                id:[],
+                title: title,
+                image: image,
+                price: price,
+                rating: rating,
+            }
+    });
+};
+
+    return (
+        <div className='product'>
+            <div className='product_info'>
+                <p>{title}</p>
+                <p className='product_price'>
+                    <small>$</small>
+                    <strong>{price}</strong>
+                </p>
+
+                <div className="product_rating">
+                    {Array(rating)
+                        .fill()
+                        .map((_, i) => {
+                            <p>a</p>
+                        })}
+                </div>
+            </div>
+
+            <img src={image} alt="" />
+
+
+            <button onClick={addToBasket}>Add to Basket</button>
+        </div>
+    );
+}
+
+
+export default Product

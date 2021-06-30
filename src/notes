@@ -1,0 +1,139 @@
+1. Run "npm i react-router-dom"
+2. Wrap the whole app with <Router>
+3. Pass <Header /> and <Home /> inside <Route path='/'> and wrap it in a <Switch>
+                    
+            <Switch>
+            <Route path="/">
+                <Header />
+                <Home />
+            </Route>
+            </Switch>
+    -- Default root should be at the bottom, otherwise ti will not be called
+
+4. Make Checkout.js, Checkout.css.
+    -- Import "./Checkout" in app js
+    -- Pass <Checkout /> fragment in App.js
+    -- Export default Checkout in Checkout.js
+
+5. In App.js To render Header irrespectiv of the path, place it before Switch in <div className="App">
+6. In Header.ks, to make the amazon logo clickable, pass the logo image in a <Link> after importing Link from "react-router-dom"
+            <Link to="./">
+                <img className='header_logo' src='http://pngimg.com/uploads/amazon/amazon_PNG25.png' alt="" />  
+            </Link>
+7. Make Subtotal.js and Subtotal.css
+    --import Subtotal.js in checkout.js
+    -- Passin <Subtotal /> in the subtotal div
+8. Run npm i react-currency-format --save --force to download currency handlers
+
+9.  Make "StateProvider.js" this will take the data from the client,
+    -- It prepares the data layer
+    -- Wraps the app in "index.ks" and provide the data layer
+    -- Put information from the data layer to the state
+
+10. Make "Reducer.js" make a component called 'reducer' and pass "action" and "state" in it.
+
+11. Make a "StateProvider.js" to provide the state to the app
+
+            export const StateProvider = ({reducer, initialState, children}) => {
+                return (
+                <StateContext.Provider value = {useReducer(reducer, initialState)}>
+                    {children}
+                </StateContext.Provider>
+                )
+            }
+
+12. When we click the button "add to basket" we need to pas ina an add to objet in it, which will make it render the item insside the object.
+13. This code in "StateProvider" will pul the imfos from the data layer
+            export const useStateValue = () => useContext(StateContext);
+
+14. Make a functuin in "Product,js"
+
+            const [state, dispatch] = useStateValue();
+
+            const addToBasket = () => {
+                    // dispatch the item into to the data layer (context API)
+                }
+        
+    -- 'state' defines the state of items inside the basket
+    -- 'dispatch' is how we manupulate the data
+    -- 'dispatch' is like a gun, it shoots an action into the data layer
+
+                        /* UPDATING THE BASKET */
+
+15. in Reducer.js if you console.log(action);
+
+    -- This will put the action taken in the data layer and show it to you in the browser console
+
+16. If in Product.js you  console.log("This is the baset >>>, basket) ;
+    --- You will see as soon as you click the "add item" it will keep adding the new data in the data layer
+
+17. "state" value in reducer wont be iretable if you dont write "...state.basket"
+
+                        /* UPDATING THE PRICE IN BASKET /*
+
+18. In Subtotal.js Add the 
+        const [{basket}, dispatch] = useStateValue();
+
+19. In Subtotal.js this code will return the number of added items inside the basket 
+             Subtotal({basket.length} items)
+
+20. In Reducer.jsmake an object which is called as a 'Selector', this will get the basket totals and display the amount of money biled
+            //SELECTOR
+            export const getBasketTotal = (basket) =>
+                basket?.reduce((amount, item) => item.price + amount, 0);
+
+21. pass this"getBasketTotal" in the value of "Subtotal.js". also pass <strong>{value}<strong>
+             value={getBasketTotal(basket)}
+             
+        - this will show the amount of money billed in checkout section.
+
+                            /* CHECKOUT PRODUCT */
+
+22. Make CheckoutProduct.js
+23. We will pull the "basket" value from the data layer
+24. Import the custom hook we hgave to import from the state provider.
+
+25.  <div className="checkoutProduct_rating">
+                    {Array(rating)
+                    .fill()
+                    .map((_, i) => {
+                        <p>*</p>
+                    })}
+                </div>
+
+        -- This code will map the "rating" and fill the "*" values depending on the numbers of rating the product has.
+
+26. In"Checkout.js" we need to render the basket itself
+        -- to render anything from the basket we need to put this code right after the "Checkout" component
+             const [{basket}, dispatch] = useStateValue();
+
+27. In "Checkout.js", to show your selected items in the cart you need to map the baskt and wrap the whole details of the item in <CheckoutProduct /> fragment and write this code
+
+                                {basket.map(item => (
+                                    <CheckoutProduct
+                                        id={item.id}
+                                        title={item.title}
+                                        image={item.image}
+                                        price={item.price}
+                                        rating={item.rating}
+
+                                        />
+
+28. In "CheckoutProduct.js" write this code to manupulate items in the basked
+            const [{basket}, dispatch] = useStateValue();
+
+29. To remove items from the basket:"
+        -- In the reducer.js make a "case" of "REMOVE_FROM_BASKET"
+        -- Check 3:19:30 of the video  to understand what the code does
+
+                                /* AUTHENTICATION */
+
+30. Make a "Login path in App.js
+    -- In header.js, wrap the "header_nav" with <Link> which redirects 'to=/login'
+                <div className="header_nav">
+                <Link to='/login>
+                  <div className="header_option">
+                    <span className='header_optionLineOne'>Hello Guest</span>
+                    <span className='header_optionLineTwo'>Sign In</span>
+                  </div>
+                </Link>
