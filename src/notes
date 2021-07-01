@@ -208,6 +208,9 @@
                             user:action.user
                         }
 
-30. To get the Hello "User" in the header after someone logs in
+30. sign Out function:
         -- In the header.js, pull the user to manupulate the function in it
                 const [{basket, user}, dispatch] = useStateValue();
+        -- in Header.js, import {auth} from firebase.js
+        -- In the "header_options" click make an onClick function {handleAuthentication} and make that object first
+        
