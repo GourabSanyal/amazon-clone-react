@@ -2,8 +2,8 @@ import React from 'react'
 import './CheckoutProduct.css'
 import { useStateValue } from './StateProvider';
 
-const CheckoutProduct = ({id, image, title, price, rating}) => {
-    const [{basket}, dispatch] = useStateValue();
+function CheckoutProduct({id, image, title, price, rating}) {
+    const [{ basket }, dispatch] = useStateValue();
 
     const removeFromBasket = () => {
         // remove the item from the basket
@@ -18,7 +18,7 @@ const CheckoutProduct = ({id, image, title, price, rating}) => {
             <img className='checkoutProduct_image' src={image} alt="" />            
 
             <div className="checkoutProduct_info">
-                <p className='checkoutProduct_info'>{title}</p>
+                <p className='checkoutProduct_title'>{title}</p>
                 <p className="checkoutProduct_price">
                     <small>$</small>
                     <strong>{price}</strong>
@@ -27,7 +27,7 @@ const CheckoutProduct = ({id, image, title, price, rating}) => {
                     {Array(rating)
                     .fill()
                     .map((_, i) => {
-                        <p>*</p>
+                        <p>🌟</p>
                     })}
                 </div>
                 <button onClick={removeFromBasket}>Remove from basket</button>

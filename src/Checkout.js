@@ -1,13 +1,12 @@
 import React from 'react';
 import './Checkout.css';
-import './Subtotal.js';
 import Subtotal from './Subtotal';
 import CheckoutProduct from './CheckoutProduct';
 import { useStateValue } from './StateProvider';
 
 
 export const Checkout = () => {
-    const [{basket}, dispatch] = useStateValue();
+    const [{basket, user}, dispatch] = useStateValue();
 
     return (
         <div className='checkout'>
@@ -29,10 +28,6 @@ export const Checkout = () => {
 
                             />
                     ))}
-                {/* CHECKOUT PRODUCT */}
-                {/* CHECKOUT PRODUCT */}
-                {/* CHECKOUT PRODUCT */}
-                {/* CHECKOUT PRODUCT */}
 
                 </div>
 
@@ -45,4 +40,4 @@ export const Checkout = () => {
     )
 }
 
-export default Checkout
+export default Checkout;

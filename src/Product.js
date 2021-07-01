@@ -2,7 +2,7 @@ import React from 'react'
 import "./Product.css"
 import { useStateValue } from './StateProvider'
 
-function Product({ title, image, product, rating, price }) {
+function Product({ id, title, image, rating, price }) {
     const [{basket}, dispatch] = useStateValue();
 
     const addToBasket = () => {
@@ -32,7 +32,7 @@ function Product({ title, image, product, rating, price }) {
                     {Array(rating)
                         .fill()
                         .map((_, i) => {
-                            <p>a</p>
+                            <p>🌟</p>
                         })}
                 </div>
             </div>

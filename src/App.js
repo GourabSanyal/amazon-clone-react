@@ -1,4 +1,4 @@
-import React, {useEffect}from "react";
+import React, {useEffect} from "react";
 import './App.css';
 import Header from "./Header";
 import Home from "./Home"
@@ -9,8 +9,7 @@ import {auth} from './firebase'
 import {useStateValue} from './StateProvider'
 
 function App() {
-
-  const [{}, dispatch] = useStateValue();
+   const [{}, dispatch] = useStateValue();
 
   useEffect(() => {
     // will only run once when the component loades
@@ -40,7 +39,7 @@ function App() {
   return (
     //BEM
     <Router>
-      <div className="App">
+      <div className="app">
         <Header />
         <Switch>
           {/* Login Page */}
