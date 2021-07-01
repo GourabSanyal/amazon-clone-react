@@ -122,7 +122,7 @@
 28. In "CheckoutProduct.js" write this code to manupulate items in the basked
             const [{basket}, dispatch] = useStateValue();
 
-29. To remove items from the basket:"
+29. To remove items from the basket:
         -- In the reducer.js make a "case" of "REMOVE_FROM_BASKET"
         -- Check 3:19:30 of the video  to understand what the code does
 
@@ -137,3 +137,77 @@
                     <span className='header_optionLineTwo'>Sign In</span>
                   </div>
                 </Link>
+
+31. In login.js, Make  email and password functions with state values
+32. In the <input> tag of email put this code   
+                
+                <input 
+                    type="text"
+                    value= {email}
+                    onChange={(e)=>setEmail(e.target.value)}
+                    />
+
+        -- This wll set the email which the use inputs in the "eamil" variable
+        -- Do the same for the <input > for password
+
+33. We need to trigger a function when we sign in, and we need to trigger a fuinction when we make an amazon account
+        -- Make a "signIn" function
+
+                                /* FIREBASE SETUP */
+
+34. Make firebase.js
+        -- Get the config code from "firebase > project settings > buttom of the page > config"
+        -- In firebase.js write this code 
+                import firebase from "firebase";
+        -- To innitialize the app with firebase config write this code at the end
+                const firebaseApp = firebase.innitializeApp(firebaseConfig);
+        -- To handle Signin use this code   
+                const db = firebaseApp.firestore();
+                const auth = firebase.auth();
+        -- Export them to use them outside the file
+                 export {db, auth};
+
+35. Regsiter: 
+        -- Import auth from firebase
+        -- In register function rwrite this code
+                        const register = (e) => {
+                    e.preventDefault()
+            // some fancy firebase login stuff
+                        auth
+                            .createUserWithEmailAndPassword(email, password)
+                            . then((auth) => {
+                                console.log(auth)
+                            })
+                            .catch(error => alert(error.message))
+                }
+
+        -- createUserWithEmailAndPassword(email, password) thsi is a built in code in the framework whcih creates a user and password manuallt and check if the logic works
+        -- Make a history function using "const history = useHistory();"
+        -- This will automaticaly change the URL when the user logins
+
+36. Sign-In:
+        -- Write this code and check if the whole system works from the client side
+
+              auth
+                .signInWithEmailAndPassword(email, password)
+                .then(auth => {
+                    history.push('/')
+                })
+                .catch(error => alert(error.message))}
+
+27. In App.js we have to makea listener using "useEffect" to keep in check who is signed in
+28. In reducer add a suer and set it as null
+            export const initialState = {
+                basket: [],
+                user: null
+            }
+29. Inreducer.js add this code to pass in the current user
+                    case 'SET_USER':
+                        return {
+                            ...state,
+                            user:action.user
+                        }
+
+30. To get the Hello "User" in the header after someone logs in
+        -- In the header.js, pull the user to manupulate the function in it
+                const [{basket, user}, dispatch] = useStateValue();
