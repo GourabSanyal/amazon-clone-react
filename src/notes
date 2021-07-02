@@ -213,4 +213,7 @@
                 const [{basket, user}, dispatch] = useStateValue();
         -- in Header.js, import {auth} from firebase.js
         -- In the "header_options" click make an onClick function {handleAuthentication} and make that object first
+        -- In Header,js pass this code which will mean if the user is signed out the show "sign in"
+            if the user is signed in, show {user name/eamil}
+                 <span className='header_optionLineTwo'>{user ? 'Sign Out' : 'Sign In'}</span>
         
