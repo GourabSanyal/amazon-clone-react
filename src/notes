@@ -216,4 +216,17 @@
         -- In Header,js pass this code which will mean if the user is signed out the show "sign in"
             if the user is signed in, show {user name/eamil}
                  <span className='header_optionLineTwo'>{user ? 'Sign Out' : 'Sign In'}</span>
-        
+        -- 
+
+                        /* USERNAME ON CHECKOUT PAGE */
+
+                        /* Deplyement */
+
+31. Run "sudo npm i -g firebase-tools" to install firebase tools
+        -- run "firebase login" to authenticate and login the click
+
+32. Run "firebase init" it will innitialize firebas in your app
+        -- Select "deployement"
+        -- Select the "filename" that you saved earlier for this app
+        -- firebase init > hosting > use existing project >
+        -- 'Select propject' > public directory? (build) > single page app? (y) > npm sun build > firebase deploy
