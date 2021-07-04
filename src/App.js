@@ -46,6 +46,7 @@ function App() {
           {/* Login Page */}
           <Route path="/login">
             <Login />
+          
           </Route>
           {/* Checkout Path */}
           <Route path="/checkout">
@@ -53,7 +54,6 @@ function App() {
           </Route>
 
         <Route path="/payment">
-          <h1>Payment Route</h1>
           <Payment />
         </Route>
 

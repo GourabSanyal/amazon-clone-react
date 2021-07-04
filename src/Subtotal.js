@@ -1,7 +1,6 @@
 import React from 'react'
 import "./Subtotal.css"
 import CurrencyFormat from "react-currency-format"
-import { HistoryOutlined, SportsBasketball } from '@material-ui/icons'
 import {useStateValue} from "./StateProvider"
 import { getBasketTotal } from './reducer'
 import { useHistory } from 'react-router-dom'
@@ -17,7 +16,7 @@ function Subtotal() {
           <>
             <p>
               {/* Part of the homework */}
-              Subtotal({basket.length} items)
+              Subtotal({basket.length} items):
                 <strong>{value}</strong>
             </p>
             <small className="subtotal__gift">

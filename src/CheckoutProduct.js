@@ -1,12 +1,10 @@
 import React from 'react'
 import './CheckoutProduct.css'
 import { useStateValue } from './StateProvider';
-import { product } from 'prelude-ls';
 
 function CheckoutProduct({id, image, title, price, rating}) {
     const [{ basket }, dispatch] = useStateValue();
     
-
     const removeFromBasket = () => {
         // remove the item from the basket
         dispatch({
@@ -15,9 +13,10 @@ function CheckoutProduct({id, image, title, price, rating}) {
 
         })
     }
+    
     return (
         <div className='checkoutProduct'>
-            <img className='checkoutProduct_image' src={image} alt="" />            
+            <img className='checkoutProduct_image' src={image}/>            
 
             <div className="checkoutProduct_info">
                 <p className='checkoutProduct_title'>{title}</p>
