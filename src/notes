@@ -237,3 +237,18 @@
 33. Pass an onclick function in "Proceed to checkout" button in the Subtotal.js, and redirect it [to='./payment'] 
 34. If you want to push the user somewhere programatically, use "history.push()", and pass the link into it.
 35. Make Payment.js, Import and  Pass in the fragment in App.js, make the css file.
+
+36. Run:
+        -- npm i @stripe/stripe-js [Pull in stripe]
+        -- Stripe login -> Developers -> API Keys -> Copy "Publishable Key"
+
+37. Higher order function:
+        -- Pass the <Payment> in App.js in <Elements> fragment to wrap it in
+
+            <Route path="/payment">
+                    <Elements stripe={promise}>
+                    <Payment />
+                    </Elements>
+                    </Route>
+
+38. 
