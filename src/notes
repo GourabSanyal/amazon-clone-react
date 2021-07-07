@@ -238,6 +238,8 @@
 34. If you want to push the user somewhere programatically, use "history.push()", and pass the link into it.
 35. Make Payment.js, Import and  Pass in the fragment in App.js, make the css file.
 
+                                /* STRIPE SETUP */
+
 36. Run:
         -- npm i @stripe/stripe-js [Pull in stripe]
         -- Stripe login -> Developers -> API Keys -> Copy "Publishable Key"
@@ -251,4 +253,26 @@
                     </Elements>
                     </Route>
 
-38. 
+38. in Payment.js:
+        -- const stripe =useStripe();
+            const elements = useElements()
+        -- import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
+
+39. Make a "handleSubmit" pass it in the <form> and "handleChange" pass it in <Elements>, 
+
+40. For hnadleChange we need to piecess of state, One to disable the button another if therre is an error.
+        -- make two states too, on eofr "disabled" one for "error"
+
+41.               const handleChange = (event) => {
+                    //Listenes for any changes in the card element
+                    //display errors as the customer type their card details
+                    setDisabled(event.empty);
+                    setError(event.error ? event.error.messege : "")
+                }
+        
+        -- If the event is empty go and disable the button
+        -- if not, if there's is an error, show the error, or show nothing
+
+42. 
+
+    
