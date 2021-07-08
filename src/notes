@@ -273,6 +273,12 @@
         -- If the event is empty go and disable the button
         -- if not, if there's is an error, show the error, or show nothing
 
-42. 
+42.               const handleSubmit = async(e) => {
+                    //do fancy stripe stuff
+                    e.preventDefault()
+                    setProcessing(true)
+                }
 
-    
+        -- This code will prevent tapping the "buy now" button for tapping multiple times, you can tap it once.
+
+43. 

@@ -4,25 +4,40 @@ import './Payment.css'
 import { useStateValue } from './StateProvider'
 import {Link} from "react-router-dom"
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from './reducer';
+import axios from 'axios';
 
 function Payment() {
     const[{basket, user}, dispatch] = useStateValue();
 
-    const stripe =useStripe();
+    const stripe = useStripe();
     const elements = useElements()
 
-    const[succeeded, setSucceeded]=useState(false)
-    const[processing, useProcessing]= useState("")
-    const[error, setError] = useState(null);
-    const[disabled, setDisabled]= useState(true)
+    const [succeeded, setSucceeded]=useState(false);
+    const [processing, setProcessing]= useState("");
+    const [error, setError] = useState(null);
+    const [disabled, setDisabled]= useState(true);
+    const [clientSecret, setclientSecret] = useState(true);
 
+    useEffect(() => {
+        // generates a stripe sectret key which allows us to charge a customer
+        const getClientSecret = async () => {
+            const response = await axios;
+        }
+        return () => {
+            
+        }
+    }, [basket])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         //do fancy stripe stuff
-        
+        e.preventDefault()
+        setProcessing(true)
+
+        // const payload = await stripe
+
     }
     
     const handleChange = (event) => {
@@ -101,6 +116,8 @@ function Payment() {
                                     <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                                 </button>
                             </div>
+                            {/* Error handeling */}
+                            {error && <div>{error}</div>}
                          </form>
                      </div>
 
