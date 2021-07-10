@@ -281,4 +281,19 @@
 
         -- This code will prevent tapping the "buy now" button for tapping multiple times, you can tap it once.
 
-43. 
+43.            useEffect(() => {
+                    // generates a stripe sectret key which allows us to charge a customer
+                    const getClientSecret = async () => {
+                        const response = await axios({
+                            method: 'post',
+                            //Stripe expects the totals in currencies in sub-unites
+                            url: `/payment/create?Total=${getBasketTotal(basket) * 100}`
+                        })
+                    }
+                }, [basket])
+
+        -- to set the the axios (set up axios.js/ run "npm i axios") and make the URl to the payment page from payment.js
+
+44. Make the backend:
+        -- Run 'firebase init' > functions > Javascript > y -y -y > cd to functions
+ 45. 
