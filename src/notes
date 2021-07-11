@@ -281,6 +281,8 @@
 
         -- This code will prevent tapping the "buy now" button for tapping multiple times, you can tap it once.
 
+                                        /* BACKEND SETUP 8?
+
 43.            useEffect(() => {
                     // generates a stripe sectret key which allows us to charge a customer
                     const getClientSecret = async () => {
@@ -296,4 +298,22 @@
 
 44. Make the backend:
         -- Run 'firebase init' > functions > Javascript > y -y -y > cd to functions
- 45. 
+ 
+45. install Express in Functions:
+        -- npm i express
+
+46. In Functions Index.js, we need these things to set up an API:
+        -- App Config
+
+47.             app.use(cors({ origin: true })
+                app.use(express.json());
+        -- "cors" is kind of a security
+        -- "express.json" will allow us to send and pass data in Json format
+
+48. Run a demo query for the API   
+        -- firebase emulators:start
+        -- Click on the Link on the terminal frid to open the firebase emulator suite which eill show you app logs
+        -- " Click on the link with this command "functions[us-central1-api]: http function initialized", This will take you to what you are gonna render from functions on the browser
+
+
+49. 
