@@ -12,8 +12,23 @@ const app = express();
 app.use(cors({ origin: true }))
 app.use(express.json());
 
-// - API returns
+// - API routes
 app.get('/', (request, response) => response.status(200).send('hello world'))
+
+app.post('./payment/create', async (request, response) => {
+    const total = request.quary.total;
+
+    console.log('Payment Request Revieved for this amount ->', total)
+
+    const paymentInternet = await stripe.paymentInternet.create({
+        amount: total, // subunit of currency
+        currency: "usd"
+    });
+    // 201 - OK - Created Something
+    response.status(201).send({
+        clientSecret: paymentInternet.client_secret
+    })
+})
 
 // - Listen Command
 exports.api = functions.https.onRequest(app)
