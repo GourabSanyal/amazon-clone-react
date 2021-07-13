@@ -32,3 +32,5 @@ app.post('./payment/create', async (request, response) => {
 
 // - Listen Command
 exports.api = functions.https.onRequest(app)
+
+//http://localhost:5001/clone-baadf/us-central1/api
