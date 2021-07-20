@@ -15,22 +15,23 @@ app.use(express.json());
 // - API routes
 app.get('/', (request, response) => response.status(200).send('hello world'))
 
-app.post('./payment/create', async (request, response) => {
+app.post('./payments/create', async (request, response) => {
     const total = request.quary.total;
 
     console.log('Payment Request Revieved for this amount ->', total)
 
-    const paymentInternet = await stripe.paymentInternet.create({
-        amount: total, // subunit of currency
-        currency: "usd"
+    const paymentIntents = await stripe.paymentIntents.create({
+        amount: total, // subunits of currency
+        currency: "usd",
     });
     // 201 - OK - Created Something
     response.status(201).send({
-        clientSecret: paymentInternet.client_secret
-    })
+        clientSecret: paymentIntents.client_secret
+    });
 })
 
 // - Listen Command
 exports.api = functions.https.onRequest(app)
 
-//http://localhost:5001/clone-baadf/us-central1/api
+//Example end point: http://localhost:5001/clone-baadf/us-central1/api
+//firebase emulators:start
