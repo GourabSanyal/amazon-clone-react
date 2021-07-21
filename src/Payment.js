@@ -15,13 +15,13 @@ function Payment() {
     const history = useHistory();
 
     const stripe = useStripe();
-    const elements = useElements()
+    const elements = useElements();
 
     const [succeeded, setSucceeded]=useState(false);
     const [processing, setProcessing]= useState("");
     const [error, setError] = useState(null);
     const [disabled, setDisabled]= useState(true);
-    const [clientSecret, setclientSecret] = useState(true);
+    const [clientSecret, setClientSecret] = useState(true);
 
     useEffect(() => {
         // generates a stripe sectret key which allows us to charge a customer
@@ -29,18 +29,18 @@ function Payment() {
             const response = await axios({
                 method: 'post',
                 //Stripe expects the totals in currencies in sub-unites, that's why multiply it with 100
-                url: `/payments/create?Total=${getBasketTotal(basket) * 100}`
+                url: `/payments/create?total=${getBasketTotal(basket) * 100}`
             });
-            setclientSecret(response.data.clientSecret)
+            setClientSecret(response.data.clientSecret)
         }
         getClientSecret();
     }, [basket])
 
         console.log("Sectret >>>", clientSecret)
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (event) => {
         //do fancy stripe stuff
-        e.preventDefault()
+        event.preventDefault()
         setProcessing(true)
 
         // const payload = await stripe
@@ -53,7 +53,7 @@ function Payment() {
             //paymetnIntent = payment Confirmation
 
             setSucceeded(true);
-            setError(null);
+            setError(null)
             setProcessing(false)
 
             history.replace('/orders')
@@ -115,7 +115,7 @@ function Payment() {
                      </div>
 
                      <div className="payment_details">
-                         {/* Stripe magiv weill go here */}
+                         {/* Stripe magic weill go here */}
 
                          <form onSubmit={handleSubmit}>
                              <CardElement onChange={handleChange}/>
