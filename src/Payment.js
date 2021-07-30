@@ -9,7 +9,7 @@ import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from './reducer';
 import axios from './axios';
 import { PassThrough } from 'stream';
-import { db } from './firebase'
+import { db } from './firebase';
 
 function Payment() {
     const[{basket, user}, dispatch] = useStateValue();
@@ -38,6 +38,7 @@ function Payment() {
     }, [basket])
 
         console.log("Secret >>>", clientSecret)
+        console.log("USER", user)
 
     const handleSubmit = async (event) => {
         //do fancy stripe stuff
@@ -55,19 +56,18 @@ function Payment() {
 
            db
             .collection('users') 
-            .doc(user?.id)
+            .doc(user?.uid)
             .collection('orders')
-            .doc(paymentIntent.id)
+            .doc(paymentIntent?.id)
             .set({
                 basket: basket,
                 amount: paymentIntent.amount,
-                created: paymentIntent.created
+                created: paymentIntent.created,
             })
 
             setSucceeded(true);
             setError(null)
             setProcessing(false)
-
             dispatch({
                 type: 'EMPTY_BASKET'
             })
