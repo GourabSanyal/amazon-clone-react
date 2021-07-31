@@ -8,7 +8,6 @@ import { useState, useEffect } from 'react';
 import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from './reducer';
 import axios from './axios';
-import { PassThrough } from 'stream';
 import { db } from './firebase';
 
 function Payment() {
