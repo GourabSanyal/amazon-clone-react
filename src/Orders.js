@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { db } from './firebase';
 import './Orders.css' 
 import { useStateValue } from './StateProvider'
+import Order from './Order'
 
 function Orders() {
     const [{basket, user}, dispatch ] = useStateValue();
@@ -15,11 +16,13 @@ function Orders() {
             .collection('users')
             .doc(user?.uid)
             .collection('orders')
-            .onSnapshot(snapshot.doc.map(doc =>({
-                id: doc.id,
-                data: doc.data()
+            .onSnapshot(snapshot => (
+                setOrders(snapshot.docs.map(doc =>({
+                    id: doc.id,
+                    data: doc.data()
             })))
-        } else { 
+        ))
+    } else { 
             setOrders([])
         }
     }, [user])

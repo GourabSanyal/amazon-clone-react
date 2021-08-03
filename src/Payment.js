@@ -50,11 +50,9 @@ function Payment() {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
-        }).then(({ id, amount, created, error, paymentIntent }) => {
+        }).then(({ error, paymentIntent }) => {
             //paymetnIntent = payment Confirmation
             
-            // console.log(paymentIntent)
-            // console.log(error)
             if(error) {
                 console.log(error)
             } else {
