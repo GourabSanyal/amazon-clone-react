@@ -50,29 +50,39 @@ function Payment() {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
-        }).then(({ paymentIntent }) => {
+        }).then(({ id, amount, created, error, paymentIntent }) => {
             //paymetnIntent = payment Confirmation
+            
+            // console.log(paymentIntent)
+            // console.log(error)
+            if(error) {
+                console.log(error)
+            } else {
 
-           db
-            .collection('users') 
-            .doc(user?.uid)
-            .collection('orders')
-            .doc(paymentIntent?.id)
-            .set({
-                basket: basket,
-                amount: paymentIntent.amount,
-                created: paymentIntent.created,
-            })
-
-            setSucceeded(true);
-            setError(null)
-            setProcessing(false)
-            dispatch({
-                type: 'EMPTY_BASKET'
-            })
-
-            history.replace('/orders')
+                db
+                 .collection('users') 
+                 .doc(user?.uid)
+                 .collection('orders')
+                 .doc(paymentIntent?.id)
+                 .set({
+                     basket: basket,
+                     amount: paymentIntent.amount,
+                     created: paymentIntent.created, 
+                 })
+            }
+     
+                 setSucceeded(true);
+                 setError(null)
+                 setProcessing(false)
+                 dispatch({
+                     type: 'EMPTY_BASKET'
+                 })
+     
+                 history.replace('/orders')
+                
+            
         })
+    
 
     }
     

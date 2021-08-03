@@ -316,4 +316,7 @@
         -- " Click on the link with this command "functions[us-central1-api]: http function initialized", This will take you to what you are gonna render from functions on the browser
 
 
-49. 
+49. Install flow for static checking:
+        -- npm install --save-dev flow-bin
+        -- In package.json add "flow" : "flow"
+        -- Innitialize flow: npm run flow init
