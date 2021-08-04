@@ -36,53 +36,115 @@ function Payment() {
         getClientSecret();
     }, [basket])
 
-        console.log("Secret >>>", clientSecret)
-        console.log("USER", user)
+        // console.log("Secret >>>", clientSecret)
+        // console.log("USER", user)
 
-    const handleSubmit = async (event) => {
+        // const handleSubmit = async (event) => {
+        //     // do all the fancy stripe stuff...
+        //     event.preventDefault();
+        //     setProcessing(true);
+    
+        //     const payload = await stripe.confirmCardPayment(clientSecret, {
+        //         payment_method: {
+        //             card: elements.getElement(CardElement)
+        //         }
+        //     }).then(({ paymentIntent }) => {
+        //         // paymentIntent = payment confirmation
+    
+        //         db
+        //           .collection('users')
+        //           .doc(user?.uid)
+        //           .collection('orders')
+        //           .doc(paymentIntent.id)
+        //           .set({
+        //               basket: basket,
+        //               amount: paymentIntent.amount,
+        //               created: paymentIntent.created
+        //           })
+    
+        //         setSucceeded(true);
+        //         setError(null)
+        //         setProcessing(false)
+    
+        //         dispatch({
+        //             type: 'EMPTY_BASKET'
+        //         })
+        
+        //         history.replace('/orders')
+        //     })
+        
+        // }
+        
+        
+        const handleSubmit = async (event) => {
         //do fancy stripe stuff
         event.preventDefault()
         setProcessing(true)
-
+        
         // const payload = await stripe
-
+        
         const payload = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
-        }).then(({ error, paymentIntent }) => {
-            //paymetnIntent = payment Confirmation
-            
-            if(error) {
-                console.log(error)
-            } else {
-
-                db
-                 .collection('users') 
-                 .doc(user?.uid)
-                 .collection('orders')
-                 .doc(paymentIntent?.id)
-                 .set({
-                     basket: basket,
-                     amount: paymentIntent.amount,
-                     created: paymentIntent.created, 
-                 })
-            }
-     
-                 setSucceeded(true);
-                 setError(null)
-                 setProcessing(false)
-                 dispatch({
-                     type: 'EMPTY_BASKET'
-                 })
-     
-                 history.replace('/orders')
-                
-            
         })
+            .then(({ error, paymentIntent }) => {
+                    //paymetnIntent = payment Confirmation
+                    
+                    if (error || !paymentIntent) {
+                        //console.log(error)
+                      }else {
+                        console.log(paymentIntent)
+                        db
+                         .collection('users') 
+                         .doc(user?.uid)
+                         .collection('orders')
+                         .doc(paymentIntent?.id)
+                         .set({
+                             basket: basket,
+                             amount: paymentIntent.amount,
+                             created: paymentIntent.created, 
+                         })
+                    }
+             
+                         setSucceeded(true);
+                         setError(null)
+                         setProcessing(false)
+                         dispatch({
+                             type: 'EMPTY_BASKET'
+                         })
+             
+                         history.replace('/orders')
+                        
+                    
+                })
+            
+        
+            }
+            //.then(({ id, amount, created, error, paymentIntent }) => {
+        //         if(error) {
+            //            console.log(error)
+            //          } else {
+    //            db.collection('users') 
+    //             .doc(user?.uid)
+    //             .collection('orders')
+    //             .doc('id') // destructured id from paymentIntent object
+    //             .set({
+        //                basket: basket,
+    //                amount: paymentIntent.amount, // destructured amount from paymentIntent object
+    //                created: paymentIntent.created, // destructured created from paymentIntent object
+    //               })
     
-
-    }
+    //             setSucceeded(true);
+    //             setError(null)
+    //             setProcessing(false)
+    //             dispatch({
+        //                  type: 'EMPTY_BASKET'
+    //             })
+    
+    //             history.replace('/orders')
+    //          }
+    //    })
     
     const handleChange = (event) => {
         //Listenes for any changes in the card element
