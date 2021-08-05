@@ -5,4 +5,4 @@ const instance = axios.create({
     //The API end point (cloud function) URL
 });
 
-export default instance ;
+export default instance;

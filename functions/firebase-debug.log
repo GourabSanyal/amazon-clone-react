@@ -873,3 +873,4 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [debug] [2021-08-04T15:44:11.848Z] [worker-us-central1-api-4bbc9c12-a0bd-4c4a-8ecb-d2bb83ae8995]: exited {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-api-4bbc9c12-a0bd-4c4a-8ecb-d2bb83ae8995]: exited"}}
 [debug] [2021-08-04T15:44:11.848Z] [worker-us-central1-api-4bbc9c12-a0bd-4c4a-8ecb-d2bb83ae8995]: FINISHED {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-api-4bbc9c12-a0bd-4c4a-8ecb-d2bb83ae8995]: FINISHED"}}
 [debug] [2021-08-04T15:44:11.848Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-08-05T05:54:44.714Z] Received signal SIGHUP 1

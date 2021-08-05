@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import CheckoutProduct from './Checkout';
 import './Payment.css'
 import { useStateValue } from './StateProvider'
@@ -9,7 +9,7 @@ import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from './reducer';
 import axios from './axios';
 import { db } from './firebase';
-
+ 
 function Payment() {
     const[{basket, user}, dispatch] = useStateValue();
     const history = useHistory();
@@ -87,23 +87,23 @@ function Payment() {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
-        })
-            .then(({ error, paymentIntent }) => {
+        }).then(({ error, payment_intent }) => {
                     //paymetnIntent = payment Confirmation
                     
-                    if (error || !paymentIntent) {
-                        //console.log(error)
+                    if (error || !payment_intent) {
+                        console.log(error) //Object
+                        console.log(payment_intent) // undefined
                       }else {
-                        console.log(paymentIntent)
+                       
                         db
                          .collection('users') 
                          .doc(user?.uid)
                          .collection('orders')
-                         .doc(paymentIntent?.id)
+                         .doc(payment_intent?.id)
                          .set({
                              basket: basket,
-                             amount: paymentIntent.amount,
-                             created: paymentIntent.created, 
+                             amount: payment_intent.amount,
+                             created: payment_intent.created, 
                          })
                     }
              
@@ -144,7 +144,7 @@ function Payment() {
     
     //             history.replace('/orders')
     //          }
-    //    })
+     //    })
     
     const handleChange = (event) => {
         //Listenes for any changes in the card element
@@ -164,7 +164,7 @@ function Payment() {
 
 
                  {/* Delivery Address */}
-                 <div className="payment_section">
+                  <div className="payment_section">
                      <div className="payment_title">
                         <h3>Delivery Address</h3>
                      </div>
@@ -204,7 +204,7 @@ function Payment() {
 
                          <form onSubmit={handleSubmit}>
                              <CardElement onChange={handleChange}/>
-
+ 
                             <div className="payment_priceContainer">
                                 <CurrencyFormat
                                     renderText={(value) => (
