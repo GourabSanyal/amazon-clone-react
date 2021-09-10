@@ -220,7 +220,7 @@
 
                         /* USERNAME ON CHECKOUT PAGE */
 
-                        /* Deplyement */
+                        /                                                               /* Deplyement */
 
 31. Run "sudo npm i -g firebase-tools" to install firebase tools
         -- run "firebase login" to authenticate and login the click
@@ -230,15 +230,16 @@
         -- Select the "filename" that you saved earlier for this app
         -- firebase init > hosting > use existing project >
         -- 'Select propject' > public directory? (build) > single page app? (y) > npm sun build > firebase deploy
+        -- If you make any changes to the app, run "npm run build" to update the deplayed app
 
                                 
-                                /* PAYMENT PAGE */
+                                                                                        /* PAYMENT PAGE */
 
 33. Pass an onclick function in "Proceed to checkout" button in the Subtotal.js, and redirect it [to='./payment'] 
 34. If you want to push the user somewhere programatically, use "history.push()", and pass the link into it.
 35. Make Payment.js, Import and  Pass in the fragment in App.js, make the css file.
 
-                                /* STRIPE SETUP */
+                                                                                        /* STRIPE SETUP */
 
 36. Run:
         -- npm i @stripe/stripe-js [Pull in stripe]
@@ -320,3 +321,11 @@
         -- npm install --save-dev flow-bin
         -- In package.json add "flow" : "flow"
         -- Innitialize flow: npm run flow init
+ 
+ 50. Deploy the back end:
+        -- firebase deploy --only functions
+
+51. npm install -g firebase-tools
+        firebase login
+        firebase init
+        firebase deploy
